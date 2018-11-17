@@ -35,10 +35,9 @@ class Coloring
 	map<pair<int, int>, int> cache_;
 
   public:
-	template <int length>
-	Coloring(const int (&clr)[length][COLOR_NUM])
+	Coloring(const int (*color)[COLOR_NUM],int length)
 	{
-		color_ = clr;
+		color_ = color;
 		length_ = length;
 	};
 	int Paint(int last_color, int depth)
@@ -70,9 +69,9 @@ class Coloring
 
 };
 
-template<typename T> void DoColoring(const T &color)
+template<int l> void DoColoring(const int (&color)[l][COLOR_NUM])
 {
-	Coloring coloring(color);
+	Coloring coloring(color,l);
 	std::cout << "cost:" << coloring.Paint(-1, 0) << std::endl;
 }
 
